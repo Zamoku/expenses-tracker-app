@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "directories": {
-    "test": "test",
-    "start": "node index.js"
+    "test": "test"
+   
   },
   "dependencies": {
     "express": "^4.18.1",
@@ -19,7 +19,8 @@
     "mocha": "^10.0.0"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "",
