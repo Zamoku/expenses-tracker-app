@@ -1,5 +1,7 @@
 form{
     margin-left: 100px;
+    margin-right:170px;
+  
   }
   table,
   th,
@@ -7,4 +9,5 @@ form{
     padding: 10px;
     border: 1px solid black;
     border-collapse: collapse;
+
   }
