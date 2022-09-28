@@ -1,0 +1,17 @@
+   <ul class="main">
+        <li><a class="main" href="/addExpense/{{user}}">Add expense</a></li>
+        <li><a class="main" href="/expenses/{{user}}">View Expenses</a></li>
+
+      </ul>
+
+<h3>Expense for {{user}}</h3>
+<form action="/getExpenses/{{user}}" method="GET">
+        <button type="submit">Show for weekly</button>
+
+<div>
+    <h4 name="category" value="Communication" >Communication</h4> <h4>{{total}}</h4>
+    <h4 name="category" value="Food">Food</h4> <h4>{{total}}</h4>
+    <h4 name="category" value="Toiletries">Toiletries</h4>{{total}}<h4></h4>
+    <h4 name="category" value="Travel">Travel</h4> <h4>{{total}}</h4>
+</div>
+</form>
