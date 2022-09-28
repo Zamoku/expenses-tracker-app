@@ -24,21 +24,24 @@ module.exports = function Expenses(db){
 
     }
     
-    // async function getTotalExpenses(category){
-    //     console.log(category)
-    //     getCategoryId = await db.one("Select id from categories where category = $1",[category])
-    //     console.log(getCategoryId)
-    //     let total = await db.one("Select SUM(amount) from expenses where category_id = $1",[getCategoryId.id]) 
-    //     console.log(total)
-    //     return total
-    // }
+    async function getTotalExpenses(name){
+       
 
-        // await db.manyOrNone()
+        username = await db.one("Select names from users where names = $1",[name])
+    
+        // getCategoryId = await db.one("Select catego from categories where category = $1",[category])
+        // console.log(getCategoryId)
+        let total = await db.manyOrNone("Select date, categories.category, expenses.amount  from expenses Inner join categories on categories.id = expenses.category_id inner join users on users.id = expenses.user_id where users.names = $1 order by date desc",[username.names]) 
+    
+        console.log(total)
+        return total
+    }
+
 
     
     return{
         addExpense,
-        // getTotalExpenses,
+        getTotalExpenses,
         addUser,
         getUser
     }

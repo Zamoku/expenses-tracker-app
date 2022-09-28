@@ -46,13 +46,13 @@ module.exports = function (expenses){
 
     async function showTotal(req, res){
         let user = req.params.name
-        let cat = req.body.category
+        // let cat = req.body.category
 
-        console.log(cat)
+        // console.log(user)
 
         res.render("expenses",{
             user,
-            total: await expenses.getTotalExpenses(req.body.category)
+            total: await expenses.getTotalExpenses(user)
             
         })
     }

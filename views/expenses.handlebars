@@ -3,15 +3,47 @@
         <li><a class="main" href="/expenses/{{user}}">View Expenses</a></li>
 
       </ul> --}}
-
-<form action="/getExpenses/{{user}}" method="GET">
-<div class="ml-20">
-<h3 class="">Expenses for {{user}}</h3>
+<style>
+      table,
+      th,
+      td {
+        padding: 10px;
+        border: 1px solid black;
+        border-collapse: collapse;
+      }
+    </style>
+<form class="" action="/getExpenses/{{user}}" method="GET">
+<div class="">
+<h2 class="">Expenses for {{user}}</h2>
         <button type="submit" class="text-center">Show for weekly</button>
+        <br>
+        <br>
 
-    <h4 name="category" value="Communication" >Communication</h4> <h4>{{total}}</h4>
-    <h4 name="category" value="Food">Food</h4> <h4>{{total}}</h4>
-    <h4 name="category" value="Toiletries">Toiletries</h4>{{total}}<h4></h4>
-    <h4 name="category" value="Travel">Travel</h4> <h4>{{total}}</h4>
 </div>
+
+<table border="1">
+  <tr>
+    <th>Category</th>
+    <th>Amount</th>
+    <th>Date</th>
+  </tr>
+  {{#each total}}
+  <tr>
+    <th>{{category}}</th>
+    <th>{{amount}}</th>
+    <th>{{date}}</th>
+  </tr>
+  {{/each}}
+</table>
+         
+              <br>
+              <br>
+          <label for="" aria-placeholder="e.g 1">Customize days</label>
+          <input type="text" name="" id=""> <label for="">day(s)</label>
 </form>
+
+
+
+    
+        
+  
