@@ -1,7 +1,8 @@
 CREATE TABLE IF NOT EXISTS Users (
     id serial primary key, 
     names text not null,
-    email VARCHAR(255) NOT NULL
+    email VARCHAR(255) NOT NULL,
+    code VARCHAR(255) NOT NULL
     );
 
 CREATE TABLE IF NOT EXISTS Categories(
@@ -19,5 +20,7 @@ CREATE TABLE IF NOT EXISTS Expenses(
    FOREIGN KEY(category_id) REFERENCES Categories(id)
 );
 
-INSERT INTO Categories(category) VALUES ('Communication'),('Food'),('Toiletries'),('Travel');
+ INSERT INTO Categories(category) VALUES ('Communication'),('Food'),('Toiletries'),('Travel');
+
+--ALTER TABLE Users ADD COLUMN code varchar not null;
 

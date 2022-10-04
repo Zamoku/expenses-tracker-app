@@ -1,0 +1,39 @@
+<h3>Register</h3>
+
+<form class="form-inline" action="/register" method="POST">
+        <div class="form-group row">
+
+            {{#if messages.success}}
+            <div class="entry">
+                <p id="successMessage"> {{messages.success}}</p>
+
+            </div>
+            {{/if}}
+
+             {{#if messages.success}}
+            <div class="entry">
+                <p id="successMessage"> {{messages.error}}</p>
+
+            </div>
+            {{/if}}
+            
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label" for="">Firstname:</label>
+                <input class="form-control" type="text" name="user_name">
+            </div>
+            
+            <div class="form-group row">
+
+                <label class="col-sm-2 col-form-label" for="">Lastname:</label>
+                <input class="form-control" type="text" name="lastname">
+            </div>
+
+            <div class="form-group row">
+
+                <label class="col-sm-2 col-form-label" for="">Email:</label>
+                <input class="form-control" type="text" name="email">
+            </div>
+        </div>
+        <button type="submit">Submit</button>
+
+    </form>

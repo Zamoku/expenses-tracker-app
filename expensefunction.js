@@ -1,35 +1,54 @@
 module.exports = function Expenses(db){
 
-    
-    async function addUser(name, email){
 
+    
+    async function addUser(name, email, code){
+        
+        
         let filteredName = name.charAt(0).toUpperCase() + name.slice(1);
-        console.log(filteredName)
+
         let regex = /^[a-z A-Z]+$/gi
 
             let getName = await db.manyOrNone("Select names from users where names = $1",[filteredName])
         
-            console.log(filteredName)
+            
             if(getName.length == 0){
            
-            await db.none("INSERT INTO Users(names, email) Values($1,$2)", [filteredName, email])
+            await db.none("INSERT INTO Users(names, email, code) Values($1,$2,$3)", [filteredName, email, code])
         }
+    }
+
+    async function getUserId(name){
+
+        let filteredName = name.charAt(0).toUpperCase() + name.slice(1);
+
+      let username = await db.one("Select id from users where names = $1",[filteredName])
+        
+        return username
     }
 
     async function getUser(name){
 
         let filteredName = name.charAt(0).toUpperCase() + name.slice(1);
 
-        username = await db.one("Select id from users where names = $1",[filteredName])
+       let username = await db.one("Select name from users where names = $1",[filteredName])
         
         return username
+    }
+
+    async function addCode(code){
+
+       let uniq_code = await db.one("Select code from users where code = $1",[code])
+
+       return uniq_code
+        
     }
 
     async function addExpense(name,category, date, amount){
 
         let filteredName = name.charAt(0).toUpperCase() + name.slice(1);
 
-        let username = await getUser(filteredName)
+        let username = await getUserId(filteredName)
 
         
         category_id = await db.one("Select id from categories where category = $1",[category])
@@ -39,14 +58,26 @@ module.exports = function Expenses(db){
 
     }
     
+    async function getExpenses(name){
+       
+        
+        username = await db.one("Select names from users where names = $1",[name])
+    
+       
+        let total = await db.manyOrNone("Select date, categories.category, expenses.amount  from expenses Inner join categories on categories.id = expenses.category_id inner join users on users.id = expenses.user_id where users.names = $1 order by date desc",[username.names]) 
+    
+    
+        return total
+    }
+
+        
     async function getTotalExpenses(name){
        
         
         username = await db.one("Select names from users where names = $1",[name])
     
-        // getCategoryId = await db.one("Select catego from categories where category = $1",[category])
-        // console.log(getCategoryId)
-        let total = await db.manyOrNone("Select date, categories.category, expenses.amount  from expenses Inner join categories on categories.id = expenses.category_id inner join users on users.id = expenses.user_id where users.names = $1 order by date desc",[username.names]) 
+       
+        let total = await db.manyOrNone("Select SUM(expenses.amount), categories.category from expenses Inner join categories on categories.id = expenses.category_id inner join users on users.id = expenses.user_id where users.names = $1 group by categories.category; ",[username.names]) 
     
     
         return total
@@ -57,7 +88,10 @@ module.exports = function Expenses(db){
     return{
         addExpense,
         getTotalExpenses,
+        getExpenses,
         addUser,
-        getUser
+        getUserId,
+        getUser,
+        addCode
     }
 }

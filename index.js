@@ -18,7 +18,7 @@ if (process.env.DATABASE_URL && !local) {
 }
 
 // which db connection to use
- const connectionString = process.env.DATABASE_URL || 'postgresql://zamoe:zamo123@localhost:5432/expenses_db';
+const connectionString = process.env.DATABASE_URL || 'postgresql://zamoe:zamo123@localhost:5432/expenses_db';
 
 const db = pgp({
     connectionString,
@@ -29,6 +29,8 @@ const db = pgp({
 
 const expenses = Expenses(db)
 const expenseRoutes = ExpenseRoutes(expenses)
+
+
 
 const app = express();
 
@@ -48,11 +50,16 @@ app.use(session({
 
 app.use(flash());
 
+
 app.engine('handlebars', exphbs.engine({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
 
 app.use(express.static('public'));
 
+app.get('/register', expenseRoutes.register)
+app.post('/register', expenseRoutes.addRegister)
+app.get('/login/:name', expenseRoutes.loginPage);
+app.post('/login/:name', expenseRoutes.displayLogin);
 app.get('/', expenseRoutes.home);
 app.post('/', expenseRoutes.add);
 app.get('/addExpense/:name', expenseRoutes.display);
