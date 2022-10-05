@@ -29,3 +29,6 @@ form{
   #successMessage{
     font-weight: bold;
   }
+  .code{
+    padding-right: 20px;
+  }
