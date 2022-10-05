@@ -26,3 +26,6 @@ form{
     /* background: rgb(223, 32, 32); */
     font-weight: bold;
   }
+  #successMessage{
+    font-weight: bold;
+  }

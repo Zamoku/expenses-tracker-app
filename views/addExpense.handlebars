@@ -1,26 +1,25 @@
 <div>
    
     <form autocomplete="off" action="/addExpense/{{user}}" method="POST">
-    <h3>Add expense</h3>
+    <h3><u>Add expense</u></h3><br>
 
-    <label for="">Category:</label>
+    <label for="">Category:</label><br>
     <select name="categories" id="">
         <option value="">Select</option>
         <option value="Communication" >Communication</option>
         <option value="Toiletries">Toiletries</option>
         <option value="Food">Food</option>
         <option value="Travel">Travel</option>
-    </select>
+    </select><br><br>
 
-    <label for="">Date:</label>
+    <label for="">Date:</label><br>
     <input type="date" id="start" name="expense_date"
-       value="2022-10-01">
+       value="2022-10-01"><br><br>
 
-    <label for="">Amount:</label>
-    <input type="text" name="date">
+    <label for="">Amount:</label><br>
+    <input type="text" name="date"> <br><br>
 
-    <button type="submit">Add</button>
-    </form>
+    <button type="submit">Add</button><br><br>
 
      {{#if messages.success}}
       <div class="success">
@@ -29,4 +28,6 @@
       </div>
       <script type="text/javascript">window.setTimeout("document.getElementById('successMessage').style.display='none';", 2000); </script>
       {{/if}}
+    </form>
+
 </div>

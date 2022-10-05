@@ -103,7 +103,7 @@ module.exports = function (expenses){
 
             await expenses.addExpense(user, category, date, amount)
             
-            req.flash('success', 'You have succesfully added your expense')
+            req.flash('success', 'You have succesfully added your expense!')
         }
 
 
