@@ -56,8 +56,8 @@ app.set('view engine', 'handlebars');
 
 app.use(express.static('public'));
 
-app.get('/register', expenseRoutes.register)
-app.post('/register', expenseRoutes.addRegister)
+app.get('/', expenseRoutes.register)
+app.post('/', expenseRoutes.addRegister)
 app.get('/login/:name', expenseRoutes.loginPage);
 app.post('/login/:name', expenseRoutes.displayLogin);
 app.get('/', expenseRoutes.home);
@@ -65,6 +65,7 @@ app.post('/', expenseRoutes.add);
 app.get('/addExpense/:name', expenseRoutes.display);
 app.post('/addExpense/:name', expenseRoutes.addExpense);
 app.get('/expenses/:name', expenseRoutes.viewExpenses);
+app.get('/totalexpenses/:name', expenseRoutes.totalExpenses);
 app.get('/getExpenses/:name', expenseRoutes.showTotal);
 
 

@@ -3,6 +3,13 @@ form{
     margin-right:170px;
   
   }
+  .box{
+    margin-left: 100px;
+    margin-right:170px;
+    width:1000px;
+    height:60px;
+    /* background-color: rgb(134, 121, 121); */
+  }
   table,
   th,
   td {
@@ -11,3 +18,9 @@ form{
     border-collapse: collapse;
 
   }
+  /* .success{
+    background-color: green;
+  } */
+  /* .error{
+    background: rgb(223, 32, 32);
+  } */

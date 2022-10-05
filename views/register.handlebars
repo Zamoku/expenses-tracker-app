@@ -1,18 +1,19 @@
 <h3>Register</h3>
 
-<form class="form-inline" action="/register" method="POST">
+<form autocomplete="off" class="form-inline" action="/" method="POST">
         <div class="form-group row">
 
             {{#if messages.success}}
-            <div class="entry">
+            <div class="success">
                 <p id="successMessage"> {{messages.success}}</p>
 
             </div>
             {{/if}}
 
-             {{#if messages.success}}
-            <div class="entry">
+             {{#if messages.error}}
+            <div class="error">
                 <p id="successMessage"> {{messages.error}}</p>
+            <script type="text/javascript">window.setTimeout("document.getElementById('successMessage').style.display='none';", 2000); </script> 
 
             </div>
             {{/if}}

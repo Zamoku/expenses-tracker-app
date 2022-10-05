@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS Expenses(
    FOREIGN KEY(category_id) REFERENCES Categories(id)
 );
 
- INSERT INTO Categories(category) VALUES ('Communication'),('Food'),('Toiletries'),('Travel');
+-- INSERT INTO Categories(category) VALUES ('Communication'),('Food'),('Toiletries'),('Travel');
 
 --ALTER TABLE Users ADD COLUMN code varchar not null;
 

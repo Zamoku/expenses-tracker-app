@@ -1,6 +1,6 @@
 <div>
    
-    <form action="/addExpense/{{user}}" method="POST">
+    <form autocomplete="off" action="/addExpense/{{user}}" method="POST">
     <h3>Add expense</h3>
 
     <label for="">Category:</label>
@@ -23,7 +23,7 @@
     </form>
 
      {{#if messages.success}}
-      <div class="entry">
+      <div class="success">
         <p id="successMessage"> {{messages.success}}</p>
 
       </div>

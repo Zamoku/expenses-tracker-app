@@ -1,8 +1,4 @@
-   {{!-- <ul class="main">
-        <li><a class="main" href="/addExpense/{{user}}">Add expense</a></li>
-        <li><a class="main" href="/expenses/{{user}}">View Expenses</a></li>
-
-      </ul> --}}
+<div class="box">
 <style>
       table,
       th,
@@ -12,7 +8,6 @@
         border-collapse: collapse;
       }
     </style>
-{{!-- <form class="" action="/getExpenses/{{user}}" method="GET"> --}}
 <div class="">
 <h2 class="">Expenses for {{user}}</h2>
         <br>
@@ -30,36 +25,18 @@
   <tr>
     <td class="th-sm">{{category}}</td>
     <td class="th-sm">{{amount}}</td>
-    <td class="th-sm">{{date}}</td>
+    <td class="th-sm">{{actual_date}}</td>
   </tr>
   {{/each}}
 </table>
+
+
+<a href="/totalexpenses/{{user}}">Get total expenses by Category</a>
          
-              <br>
-              <br>
-
-<form action="/getExpenses/{{user}}">
-          <label for="" aria-placeholder="e.g 1">Customize days</label>
-          <input type="number" name="" id=""> <label for="">day(s)</label>
-
-        <button type="submit" class="text-center">Show</button>
-
-        <table class="table table-striped table-secondary table-hover table-responsive-md w-auto" >
-  <tr>
-    <th>Category</th>
-    <th>Total</th>
     
-  </tr>
-  {{#each total}}
-  <tr>
-    {{!-- Make total to be a link that shows the details--}}
-    <td class="th-sm">{{category}}</td>
-    <td class="th-sm">{{sum}}</td>
-  </tr>
-  {{/each}}
-</table>
-  </form>
-{{!-- </form> --}}
+
+  </div>
+
 
 
 

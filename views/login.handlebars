@@ -1,24 +1,24 @@
-<form action="/login/{{user}}" method="POST">
+<form autocomplete="off" action="/login/{{user}}" method="POST">
     <div class="form-group row">
 
          {{#if messages.success}}
-            <div class="entry">
+            <div class="success">
                 <p id="successMessage"> {{messages.success}}</p>
 
             </div>
             {{/if}}
 
              {{#if messages.success}}
-            <div class="entry">
+            <div class="error">
                 <p id="successMessage"> {{messages.error}}</p>
                 {{!-- <script type="text/javascript">window.setTimeout("document.getElementById('successMessage').style.display='none';", 2000); </script> --}}
 
             </div>
             {{/if}}
-
-        <label class="col-sm-2 col-form-label" for="">Code:</label>
+<div class="form-group row">
+        <label class="col-sm-2 col-form-lab" for="">Code:</label>
         <input class="form-control" type="text" name="gen_code">
-
+</div>
          <button type="submit">Submit</button>
     </div>
 

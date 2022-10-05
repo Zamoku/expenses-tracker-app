@@ -14,21 +14,35 @@ module.exports = function (expenses){
 
             let name = req.body.user_name
             let email = req.body.email
-              
-              if(name){
-                 const code = uid()
+            const code = uid()
 
+            const get_user = await expenses.findUser(name) 
+            
+            // get_user
+            
+            
+            
+            if(get_user.count == 1 ){
+                
+                req.flash('error', 'User already exists')
+                
+                res.redirect("/")
+            }
+            
+           else if(name, email == ""){
+                req.flash('error', 'No user or email provided')
+                
+                res.redirect("/")
+            }
+            else{
+            // (name && email && name !== "" && get_user.names !== name ){
 
-                 await expenses.addUser(name, email, code)
+                  await expenses.addUser(name, email, code)
 
-                req.flash('success', 'You have succesfully registered, your code is:' + code)
+                req.flash('success', 'You have succesfully registered, your code is: ' + code)
 
                 res.redirect("/login/"+ name)
 
-            }else{
-                req.flash('error', 'No user provided')
-
-                res.redirect("/register")
             }
     
     }
@@ -43,7 +57,7 @@ module.exports = function (expenses){
     async function displayLogin(req, res){
        let {gen_code} = req.body
        let user = req.params.name
-    let getCode = await expenses.addCode(gen_code)
+    let getCode = await expenses.getCode(gen_code)
     
 
         if(getCode.code === gen_code){
@@ -64,6 +78,7 @@ module.exports = function (expenses){
         let name = req.body.user_name
         let email = req.body.email
       
+        
 
         await expenses.addUser(name, email)
 
@@ -84,9 +99,13 @@ module.exports = function (expenses){
         let date = req.body.expense_date
         let amount = req.body.date
 
-        await expenses.addExpense(user, category, date, amount)
+        if(amount > 0){
 
-        req.flash('success', 'You have succesfully added your expense')
+            await expenses.addExpense(user, category, date, amount)
+            
+            req.flash('success', 'You have succesfully added your expense')
+        }
+
 
         res.redirect("/addExpense/"+ user)
     }
@@ -100,10 +119,19 @@ module.exports = function (expenses){
         })
     }
 
+    async function totalExpenses(req, res){
+        let user = req.params.name
+        res.render('totalexpenses',{
+            user,
+            total: await expenses.getTotalExpenses(user)
+        });
+    }
+    
+
     async function showTotal(req, res){
         let user = req.params.name
         
-        res.render("expenses",{
+        res.render("expense",{
             user,
             total: await expenses.getTotalExpenses(user)
             
@@ -121,6 +149,7 @@ module.exports = function (expenses){
         viewExpenses,
         showTotal,
         loginPage,
+        totalExpenses,
         displayLogin
     }
 }
